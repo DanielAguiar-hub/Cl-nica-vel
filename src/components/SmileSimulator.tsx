@@ -160,7 +160,7 @@ export default function SmileSimulator() {
           id="trigger-simulation-btn"
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 py-2.5 rounded-lg text-[10px] font-mono tracking-widest font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
+          className="w-full bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 py-2.5 rounded-lg text-[10px] font-mono tracking-widest font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.12)] hover:shadow-[0_0_22px_rgba(255,255,255,0.25)] hover:scale-[1.02] duration-300"
         >
           {loading ? (
             <span className="flex items-center gap-1">

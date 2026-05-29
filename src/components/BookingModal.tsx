@@ -302,7 +302,7 @@ export default function BookingModal({
                     <button
                       id="submit-booking-btn"
                       type="submit"
-                      className="flex-1 bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 py-3 rounded-xl text-xs font-mono font-black tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
+                      className="flex-1 bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 py-3 rounded-xl text-xs font-mono font-black tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.12)] hover:shadow-[0_0_22px_rgba(255,255,255,0.25)] hover:scale-[1.01] duration-300"
                     >
                       <Sparkles className="w-4 h-4 text-slate-950 animate-pulse" />
                       CONFIRMAR PRÉ-AGENDAMENTO

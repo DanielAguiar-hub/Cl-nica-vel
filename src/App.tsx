@@ -116,7 +116,7 @@ export default function App() {
   const activeTreatment = TREATMENTS.find((t) => t.id === selectedTreatmentId) || TREATMENTS[0];
 
   return (
-    <div className="min-h-screen w-full anodent-hero-layout text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden relative select-none selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen w-full anodent-hero-layout text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden relative selection:bg-cyan-500 selection:text-black">
       
       {/* Container relativo da Seção Hero para limitar o escopo do vídeo de fundo */}
       <div className="relative w-full min-h-screen flex flex-col justify-between z-10">
@@ -235,7 +235,7 @@ export default function App() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 rounded-full px-8 py-3.5 text-[9px] font-mono font-black tracking-widest transition-all cursor-pointer flex items-center gap-3 shadow-lg shadow-cyan-500/10 uppercase"
+                className="bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 rounded-full px-8 py-3.5 text-[9px] font-mono font-black tracking-widest transition-all cursor-pointer flex items-center gap-3 shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:scale-[1.02] duration-300 uppercase"
               >
                 <span className="w-2 h-2 rounded-full bg-slate-950 animate-pulse" />
                 AGENDAR VIA WHATSAPP
@@ -304,27 +304,10 @@ export default function App() {
 
           </section>
 
-          {/* --- COLUNA DIREITA: SELETOR PREMIUM DE TRATAMENTOS FLUTUANTES (LG: 5 Cols) --- */}
+          {/* --- COLUNA DIREITA: LIBERADA PARA MÁXIMA VISIBILIDADE DO VÍDEO (LG: 5 Cols) --- */}
           <section className="lg:col-span-5 flex flex-col justify-end h-full relative py-8 pl-4 lg:pl-10" id="floating-treatments-column">
             
-            {/* Seletor Premium de Tratamentos Flutuantes (TreatmentCard) */}
-            <div className="hidden lg:flex flex-col gap-4 mb-8 items-end w-full">
-              <span className="text-[9px] font-mono tracking-widest text-cyan-400/50 uppercase font-bold block mb-1">
-                SELECIONE UM PROTOCOLO 3D:
-              </span>
-              {TREATMENTS.map((t, idx) => (
-                <TreatmentCard
-                  key={t.id}
-                  treatment={t}
-                  isActive={selectedTreatmentId === t.id}
-                  onSelect={() => {
-                    setSelectedTreatmentId(t.id);
-                    showNotice(`Protocolo carregado: ${t.title}`);
-                  }}
-                  index={idx}
-                />
-              ))}
-            </div>
+            <div className="xl:block hidden h-[220px]" /> {/* Espaçador para deixar o vídeo 3D brilhar */}
 
             {/* Selo de credenciamento clínico */}
             <div className="mt-auto self-center lg:self-end max-w-[280px] text-right space-y-1 opacity-80 select-none">
@@ -341,25 +324,25 @@ export default function App() {
       </div>
 
       {/* 2.2 SEÇÃO: SOBRE A CLÍNICA (Fundo sólido sem vídeo 3D para aterrar o layout, contrastando elegantemente) */}
-      <section id="sobre-clinica" className="w-full py-20 bg-[#030614] border-t border-cyan-500/10 relative z-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section id="sobre-clinica" className="w-full py-32 bg-[#030614] border-t border-cyan-500/10 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Texto institucional */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-6 space-y-8">
             <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.2em] text-[#00f0ff] uppercase font-black">
               <span className="w-6 h-[1.5px] bg-[#00f0ff]" />
               <span>A CLÍNICA</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-sans uppercase tracking-tight text-white leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-[64px] font-black font-sans uppercase tracking-tight text-white leading-[0.95]">
               ODONTOLOGIA HUMANIZADA <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">COM SUPORTE DIGITAL</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-cyan-300 drop-shadow-[0_0_8px_rgba(0,240,255,0.15)]">COM SUPORTE DIGITAL</span>
             </h2>
 
-            <p className="text-sm text-slate-300 font-sans leading-relaxed">
+            <p className="text-lg sm:text-[19px] text-slate-200 font-sans leading-relaxed">
               Na <strong>VIU Odontologia</strong>, unimos o acolhimento de especialistas à precisão da tecnologia digital bucal. Nossa filosofia foca no tratamento individualizado do paciente, combinando as técnicas estéticas mais avançadas e a saúde biológica orofacial.
             </p>
 
-            <p className="text-sm text-slate-400 font-sans leading-relaxed">
+            <p className="text-lg sm:text-[19px] text-slate-300 font-sans leading-relaxed">
               Nossa clínica foi planejada para oferecer uma experiência confortável, tranquila e eficiente, longe do aspecto frio dos consultórios tradicionais. Trabalhamos com escaneamento tridimensional rápido, cirurgia guiada por computador e materiais biocompatíveis de última geração para restabelecer a estética e a função corretas da sua boca.
             </p>
 
@@ -368,7 +351,7 @@ export default function App() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 rounded-full px-8 py-3.5 text-[9px] font-mono font-black tracking-widest transition-all gap-2.5 items-center shadow-lg"
+                className="inline-flex bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 rounded-full px-10 py-4.5 text-[10px] font-mono font-black tracking-widest transition-all gap-3 items-center shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:scale-[1.03] duration-300 uppercase"
               >
                 <Phone className="w-3.5 h-3.5 text-slate-950" />
                 <span>AGENDAR AGORA NO WHATSAPP</span>
@@ -378,8 +361,8 @@ export default function App() {
           </div>
 
           {/* Coluna direita da clínica com imagem real do consultório */}
-          <div className="lg:col-span-5 relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-cyan-500/20 relative shadow-2xl">
+          <div className="lg:col-span-6 relative w-full">
+            <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-cyan-500/20 relative shadow-2xl">
               <img 
                 src="/photo_clinica_geral.png" 
                 alt="Consultório Moderno Viu Odontologia" 
@@ -389,9 +372,9 @@ export default function App() {
             </div>
 
             {/* Painel flutuante de tecnologia */}
-            <div className="absolute -bottom-6 -right-4 bg-slate-950/90 backdrop-blur-md p-4 rounded-xl border border-cyan-500/20 max-w-[200px] shadow-xl">
+            <div className="absolute -bottom-4 -right-2 bg-slate-950/95 backdrop-blur-md p-5 rounded-2xl border border-cyan-500/20 max-w-[220px] shadow-xl">
               <span className="text-[9px] font-mono text-[#00f0ff] font-bold block uppercase tracking-wider">TECNOLOGIA 3D</span>
-              <p className="text-[11px] text-slate-300 leading-snug mt-1">Escaneamento bucal computadorizado rápido e totalmente indolor.</p>
+              <p className="text-xs text-slate-200 leading-relaxed mt-1.5 font-medium">Escaneamento bucal computadorizado rápido e totalmente indolor.</p>
             </div>
           </div>
         </div>
@@ -572,17 +555,17 @@ export default function App() {
                   <svg className="w-8 h-8 text-cyan-400 opacity-60 fill-cyan-400/10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v4c0 1.25.75 2 2 2h2c0 3-2 4-4 4v3zm11 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v4c0 1.25.75 2 2 2h2c0 3-2 4-4 4v3z" />
                   </svg>
-                  <p className="text-xs sm:text-[13px] text-slate-300 font-sans leading-relaxed italic">
+                  <p className="text-[13px] sm:text-sm text-slate-200 font-sans leading-relaxed italic">
                     "{item.text}"
                   </p>
                 </div>
                 
                 <div className="mt-6 pt-4 border-t border-cyan-500/5 text-left">
-                  <strong className="text-xs sm:text-[13px] font-sans font-bold text-white block uppercase tracking-wide">
+                  <strong className="text-[13px] sm:text-sm font-sans font-bold text-white block uppercase tracking-wide">
                     {item.name}
                   </strong>
                   {item.role && (
-                    <span className="text-[10px] font-mono text-cyan-400/60 block uppercase tracking-wider mt-0.5">
+                    <span className="text-[11px] font-mono text-cyan-400/60 block uppercase tracking-wider mt-0.5">
                       {item.role}
                     </span>
                   )}

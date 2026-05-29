@@ -56,7 +56,7 @@ export default function Navigation({
       </a>
 
       {/* Menu de navegação superior funcional com links traduzidos */}
-      <nav id="top-nav-menu" className="hidden md:flex items-center gap-1.5 p-1 bg-slate-950/15 backdrop-blur-md border border-white/5 rounded-full text-[10px] font-mono tracking-widest text-slate-300 select-none shadow-inner shadow-cyan-950/20">
+      <nav id="top-nav-menu" className="hidden md:flex items-center gap-1.5 p-1 bg-slate-950/15 backdrop-blur-md border border-white/5 rounded-full text-[12px] font-mono tracking-widest text-slate-300 select-none shadow-inner shadow-cyan-950/20">
         <a href="#sobre-clinica" className="hover:text-[#00f0ff] hover:bg-white/5 px-4 py-2 rounded-full transition-all uppercase font-bold">
           A Clínica
         </a>
@@ -83,7 +83,7 @@ export default function Navigation({
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 font-mono rounded-full px-6 py-2.5 text-[9px] tracking-widest font-black transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer uppercase"
+          className="bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 font-mono rounded-full px-6 py-2.5 text-[9px] tracking-widest font-black transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.12)] hover:shadow-[0_0_22px_rgba(255,255,255,0.25)] cursor-pointer uppercase hover:scale-[1.02] duration-300"
         >
           WHATSAPP
           <span className="text-xs">↗</span>

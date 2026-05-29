@@ -130,6 +130,8 @@ export default function App() {
             loop
             muted
             playsInline
+            preload="metadata"
+            aria-hidden="true"
             poster="/photo_clinica_geral.png"
             className="absolute inset-0 w-full h-full object-cover opacity-85 transition-opacity duration-700 ease-in-out"
           />
@@ -368,6 +370,10 @@ export default function App() {
               <img 
                 src="/photo_clinica_geral.png" 
                 alt="Consultório Moderno Viu Odontologia" 
+                width="1200"
+                height="750"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#030614]/80 via-transparent to-transparent" />
@@ -393,6 +399,8 @@ export default function App() {
             loop
             muted
             playsInline
+            preload="metadata"
+            aria-hidden="true"
             poster="/photo_estetica.png"
             className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen transition-opacity duration-700 ease-in-out"
           />
@@ -465,6 +473,10 @@ export default function App() {
                     <img 
                       src={getServiceImage(service.id)} 
                       alt={service.title} 
+                      width="640"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030718]/60 to-transparent pointer-events-none" />

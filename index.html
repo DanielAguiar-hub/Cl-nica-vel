@@ -3,37 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VIU Odontologia | Estética Dental Avançada & Implantes em São Paulo</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Clínica boutique de odontologia em Pinheiros, São Paulo. Especialistas em design digital do sorriso, facetas de porcelana, implantes e Invisalign." />
-    <meta name="keywords" content="dentista sp, odontologia estetica, lentes de contato dentaria, implante dentario sp, invisalign pinheiros, viu odontologia" />
+    <title>VIU Odontologia | Estética Dental, Implantes e Invisalign em São Paulo</title>
+
+    <meta
+      name="description"
+      content="Clínica odontológica em Pinheiros, São Paulo, especializada em estética dental, lentes de contato dentais, implantes, Invisalign e atendimento humanizado."
+    />
+    <meta
+      name="keywords"
+      content="dentista em São Paulo, dentista em Pinheiros, odontologia estética, lentes de contato dental, implante dentário, Invisalign, VIU Odontologia"
+    />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#02040c" />
+    <meta name="author" content="VIU Odontologia" />
     <link rel="canonical" href="https://www.viuodontologia.com.br/" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.viuodontologia.com.br/" />
-    <meta property="og:title" content="VIU Odontologia | Estética Dental Avançada & Implantes em São Paulo" />
-    <meta property="og:description" content="Sorrisos exclusivos na intersecção da biologia, estética avançada e saúde bucal integral. Agende pelo WhatsApp." />
-    <meta property="og:image" content="https://www.viuodontologia.com.br/photo_clinica_geral.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="preload" as="image" href="/photo_clinica_geral.png" />
 
-    <!-- Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="VIU Odontologia" />
+    <meta property="og:url" content="https://www.viuodontologia.com.br/" />
+    <meta property="og:title" content="VIU Odontologia | Estética Dental, Implantes e Invisalign em São Paulo" />
+    <meta
+      property="og:description"
+      content="Sorrisos exclusivos com tecnologia digital, estética avançada e saúde bucal integral. Agende pelo WhatsApp."
+    />
+    <meta property="og:image" content="https://www.viuodontologia.com.br/photo_clinica_geral.png" />
+    <meta property="og:image:alt" content="Consultório moderno da VIU Odontologia em São Paulo" />
+
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.viuodontologia.com.br/" />
-    <meta property="twitter:title" content="VIU Odontologia | Estética Dental Avançada & Implantes em São Paulo" />
-    <meta property="twitter:description" content="Sorrisos exclusivos na intersecção da biologia, estética avançada e saúde bucal integral. Agende pelo WhatsApp." />
+    <meta property="twitter:title" content="VIU Odontologia | Estética Dental, Implantes e Invisalign em São Paulo" />
+    <meta
+      property="twitter:description"
+      content="Sorrisos exclusivos com tecnologia digital, estética avançada e saúde bucal integral. Agende pelo WhatsApp."
+    />
     <meta property="twitter:image" content="https://www.viuodontologia.com.br/photo_clinica_geral.png" />
+    <meta property="twitter:image:alt" content="Consultório moderno da VIU Odontologia em São Paulo" />
 
-    <!-- Schema.org JSON-LD Structured Data for Local Business (Dentist) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Dentist",
         "name": "VIU Odontologia",
+        "description": "Clínica odontológica em Pinheiros especializada em estética dental, implantes, Invisalign, odontopediatria e atendimento de urgência.",
         "image": "https://www.viuodontologia.com.br/photo_clinica_geral.png",
         "telephone": "+55-11-3333-3333",
         "url": "https://www.viuodontologia.com.br",
+        "priceRange": "$$$",
+        "medicalSpecialty": [
+          "Cosmetic Dentistry",
+          "Dental Implants",
+          "Orthodontics",
+          "Pediatric Dentistry",
+          "Emergency Dental Care"
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Av. Brigadeiro Faria Lima, 2000",
@@ -64,7 +92,34 @@
         "sameAs": [
           "https://www.instagram.com/viuodontologia",
           "https://www.facebook.com/viuodontologia"
-        ]
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Tratamentos odontológicos",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Odontologia estética e design digital do sorriso"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Implantes dentários digitais"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Ortodontia com alinhadores invisíveis"
+              }
+            }
+          ]
+        }
       }
     </script>
   </head>
@@ -73,4 +128,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

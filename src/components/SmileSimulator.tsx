@@ -24,7 +24,7 @@ export default function SmileSimulator() {
         simResult = {
           concern: "Melhoria de Tonalidade & Brilho do Esmalte",
           tier: "ESTÉTICA AVANÇADA - GRAU 1",
-          recommedation: "Clareamento biológico com peróxido de hidrogênio ativado combinado com lentes de porcelana feldspática ultrafinas para simetria ideal.",
+          recommendation: "Clareamento biológico com peróxido de hidrogênio ativado combinado com lentes de porcelana feldspática ultrafinas para simetria ideal.",
           timeline: "1 a 2 Sessões (7-10 Dias no total)",
           importance: 2
         };
@@ -32,7 +32,7 @@ export default function SmileSimulator() {
         simResult = {
           concern: "Correção de Mordida & Alinhamento Oclusal",
           tier: "ALINHADORES INVISÍVEIS - GRAU 2",
-          recommedation: "Alinhadores termoplásticos sequenciais Invisalign® planejados por escaneamento 3D para posicionamento e ganho de postura oclusal.",
+          recommendation: "Alinhadores termoplásticos sequenciais Invisalign® planejados por escaneamento 3D para posicionamento e ganho de postura oclusal.",
           timeline: "6 a 12 Meses monitorados",
           importance: 4
         };
@@ -40,7 +40,7 @@ export default function SmileSimulator() {
         simResult = {
           concern: "Ausência Dentária & Perda Óssea",
           tier: "REABILITAÇÃO ORAL E IMPLANTES - GRAU 5",
-          recommedation: "Cirurgia de implante guiada por computador. Fixação de pino de titânio ou zircônia com colocação imediata de coroa provisória.",
+          recommendation: "Cirurgia de implante guiada por computador. Fixação de pino de titânio ou zircônia com colocação imediata de coroa provisória.",
           timeline: "2 a 3 Sessões (3 Meses de osseointegração)",
           importance: 5
         };
@@ -48,7 +48,7 @@ export default function SmileSimulator() {
         simResult = {
           concern: "Remoção de Patógenos & Limpeza Preventiva",
           tier: "PROFILAXIA E HIGIENE INTEGRATIVA - GRAU 3",
-          recommedation: "Profilaxia profunda com fluxo de ar de glicina, análise e orientação do microbioma oral para a preservação de gengivas saudáveis.",
+          recommendation: "Profilaxia profunda com fluxo de ar de glicina, análise e orientação do microbioma oral para a preservação de gengivas saudáveis.",
           timeline: "Sessão única (retornos a cada 6 meses)",
           importance: 3
         };
@@ -193,7 +193,7 @@ export default function SmileSimulator() {
 
             <div>
               <span className="text-[8px] font-mono text-cyan-400/60 uppercase tracking-widest block font-bold">MÉTODO RECOMENDADO</span>
-              <p className="text-[11px] leading-relaxed font-sans text-slate-300 mt-0.5">{results.recommedation}</p>
+              <p className="text-[11px] leading-relaxed font-sans text-slate-300 mt-0.5">{results.recommendation}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-2 pt-1">

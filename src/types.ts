@@ -36,7 +36,7 @@ export interface ClinicStat {
 export interface SimulationResult {
   concern: string;
   tier: string;
-  recommedation: string;
+  recommendation: string;
   timeline: string;
   importance: number; // 1-5 scale
 }

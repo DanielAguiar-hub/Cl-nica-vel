@@ -133,6 +133,8 @@ export default function App() {
             poster="/photo_clinica_geral.png"
             className="absolute inset-0 w-full h-full object-cover opacity-85 transition-opacity duration-700 ease-in-out"
           />
+          {/* Suavização da transição inferior do vídeo para a seção Sobre (Sólida) */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#030614] to-transparent z-20 pointer-events-none" />
         </div>
 
         {/* Marcadores flutuantes laterais com especialidades da clínica */}
@@ -324,7 +326,7 @@ export default function App() {
       </div>
 
       {/* 2.2 SEÇÃO: SOBRE A CLÍNICA (Fundo sólido sem vídeo 3D para aterrar o layout, contrastando elegantemente) */}
-      <section id="sobre-clinica" className="w-full py-32 bg-[#030614] border-t border-cyan-500/10 relative z-20">
+      <section id="sobre-clinica" className="w-full py-32 bg-[#030614] relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Texto institucional */}
           <div className="lg:col-span-6 space-y-8">
@@ -381,7 +383,7 @@ export default function App() {
       </section>
 
       {/* 2.5 SEÇÃO: LISTA COMPLETA DE SERVIÇOS (Imagens reais odontológicas inseridas nos cards) */}
-      <section id="services" className="w-full py-16 md:py-24 relative overflow-hidden z-10 border-t border-cyan-500/20 scroll-mt-12 bg-gradient-to-b from-transparent via-[#02040c]/70 to-[#02040c]">
+      <section id="services" className="w-full py-16 md:py-24 relative overflow-hidden z-10 scroll-mt-12 bg-gradient-to-b from-[#030614] via-[#02040c]/70 to-[#02040c]">
         
         {/* Layer do Vídeo de Fundo da Seção de Serviços */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
@@ -395,7 +397,7 @@ export default function App() {
             className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen transition-opacity duration-700 ease-in-out"
           />
           <div className="absolute inset-0 bg-black/4" />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#030614] via-[#030614]/50 to-transparent pointer-events-none z-10" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-12 md:space-y-16 relative z-10">
@@ -502,7 +504,7 @@ export default function App() {
       </section>
 
       {/* 2.8 SEÇÃO: DEPOIMENTOS (SORRISOS DE SATISFAÇÃO) */}
-      <section id="depoimentos" className="w-full py-16 md:py-24 relative overflow-hidden z-20 bg-[#02040c] border-t border-cyan-500/10 scroll-mt-12">
+      <section id="depoimentos" className="w-full py-16 md:py-24 relative overflow-hidden z-20 bg-[#02040c] scroll-mt-12">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 relative">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

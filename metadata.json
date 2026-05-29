@@ -1,0 +1,6 @@
+{
+  "name": "Dentist Hero Section",
+  "description": "An interactive, responsive dental clinic hero section inspired by a modernist layout with a white aesthetic and precise typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

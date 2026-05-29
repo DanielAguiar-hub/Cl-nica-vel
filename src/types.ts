@@ -1,0 +1,55 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+export interface Treatment {
+  id: string;
+  tag: string;
+  title: string;
+  description: string;
+  features: string[];
+  duration: string;
+  doctor: string;
+  priceEstimate: string;
+}
+
+export interface Appointment {
+  id: string;
+  patientName: string;
+  email: string;
+  treatmentId: string;
+  dentistName: string;
+  date: string;
+  timeSlot: string;
+  notes?: string;
+  createdAt: string;
+}
+
+export interface ClinicStat {
+  id: string;
+  value: string;
+  label: string;
+  detail: string;
+}
+
+export interface SimulationResult {
+  concern: string;
+  tier: string;
+  recommedation: string;
+  timeline: string;
+  importance: number; // 1-5 scale
+}
+
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface Testimonial {
+  id: string;
+  text: string;
+  name: string;
+  role?: string;
+}

@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", Georgia, serif;
+}
+
+@layer base {
+  body {
+    background-color: #02040c;
+    color: #f1f5f9;
+  }
+}
+
+/* Custom background grid and deep glowing blue/cyan laser reflections inspired by the futuristic aligner image */
+.anodent-hero-layout {
+  position: relative;
+  background-color: #02040b;
+  background-image: 
+    radial-gradient(circle at 70% 50%, rgba(0, 102, 255, 0.35) 0%, rgba(2, 4, 12, 0) 65%),
+    radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.22) 0%, rgba(2, 4, 12, 0) 55%),
+    radial-gradient(circle at 50% 95%, rgba(0, 162, 255, 0.12) 0%, rgba(2, 4, 11, 0) 75%);
+}
+
+.anodent-precision-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+}
+
+/* Stunning glowing dark-mode glassmorphism style mapped to the transparent medical aligner look */
+.glass-treatment-card {
+  background: rgba(3, 8, 26, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+}
+
+.glass-treatment-card:hover {
+  background: rgba(5, 15, 46, 0.75);
+  border-color: rgba(0, 240, 255, 0.5);
+  transform: translate3d(-3px, -3px, 0);
+  box-shadow: 0 15px 40px -8px rgba(0, 102, 255, 0.45);
+}
+
+.glass-treatment-card-active {
+  background: rgba(0, 132, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}

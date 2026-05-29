@@ -67,3 +67,16 @@
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
+
+/* Neon glow borders on focus and select states */
+.neon-glow-border {
+  border-color: rgba(0, 240, 255, 0.6) !important;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), inset 0 0 8px rgba(0, 240, 255, 0.1) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Glassmorphism improvements with hardware acceleration */
+.glass-treatment-card {
+  will-change: transform, border-color, box-shadow;
+}
+

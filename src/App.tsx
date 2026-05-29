@@ -7,13 +7,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkle, ArrowUpRight, Globe, Check, AlertCircle, Heart, Activity, UserCheck, Shield, Phone, MapPin, Instagram, Facebook, Linkedin } from "lucide-react";
 import { Appointment } from "./types";
-import { TREATMENTS, CLINIC_STATS, SERVICES_GRID, TESTIMONIALS } from "./data";
+import { TREATMENTS, CLINIC_STATS, SERVICES_GRID, TESTIMONIALS, WHATSAPP_LINK } from "./data";
 import Navigation from "./components/Navigation";
 import TreatmentCard from "./components/TreatmentCard";
 import BookingModal from "./components/BookingModal";
 import SmileSimulator from "./components/SmileSimulator";
 
-export const WHATSAPP_LINK = "https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Viu%20Odontologia.";
+export { WHATSAPP_LINK };
 
 export function ClinicLogo() {
   return (
@@ -130,17 +130,7 @@ export default function App() {
             loop
             muted
             playsInline
-            onTimeUpdate={(e) => {
-              const video = e.currentTarget;
-              if (isNaN(video.duration)) return;
-              const fadeStart = 0.8; // seconds before loop end to fade
-              const remaining = video.duration - video.currentTime;
-              if (remaining <= fadeStart) {
-                video.style.opacity = "0";
-              } else {
-                video.style.opacity = "0.85";
-              }
-            }}
+            poster="/photo_clinica_geral.png"
             className="absolute inset-0 w-full h-full object-cover opacity-85 transition-opacity duration-700 ease-in-out"
           />
         </div>
@@ -210,33 +200,27 @@ export default function App() {
 
             {/* Título Principal de Impacto com Mapeamento em Português */}
             <div id="hero-mega-text" className="space-y-1 md:space-y-2 select-none relative pt-2">
-              
-              <div className="flex items-end justify-between max-w-full relative">
-                <h1 className="text-4xl sm:text-5xl md:text-[76px] xl:text-[84px] font-black tracking-[-0.04em] leading-[0.80] text-white font-sans uppercase">
-                  CRIANDO
-                </h1>
+              <h1 className="text-4xl sm:text-5xl md:text-[76px] xl:text-[84px] font-black tracking-[-0.04em] leading-[0.80] font-sans uppercase">
+                <span className="flex items-end justify-between max-w-full relative">
+                  <span className="text-white">CRIANDO</span>
+                  <span className="hidden sm:flex items-center gap-2 text-[8px] font-mono tracking-widest text-cyan-400/60 font-bold uppercase pb-1 border-b border-cyan-500/20">
+                    <span>A ARTE DE CONSTRUIR SORRISOS</span>
+                    <span className="w-4 h-4 rounded-full border border-cyan-500/30 flex items-center justify-center text-[10px] pb-0.5 leading-none font-normal">+</span>
+                  </span>
+                </span>
 
-                <div className="hidden sm:flex items-center gap-2 text-[8px] font-mono tracking-widest text-cyan-400/60 font-bold uppercase pb-1 border-b border-cyan-500/20">
-                  <span>A ARTE DE CONSTRUIR SORRISOS</span>
-                  <span className="w-4 h-4 rounded-full border border-cyan-500/30 flex items-center justify-center text-[10px] pb-0.5 leading-none font-normal">+</span>
-                </div>
-              </div>
-
-              <div className="relative">
-                <h1 className="text-4xl sm:text-5xl md:text-[76px] xl:text-[84px] font-black tracking-[-0.04em] leading-[0.80] text-[#00d2ff] font-sans drop-shadow-[0_0_12px_rgba(0,162,255,0.4)] uppercase">
+                <span className="block text-[#00d2ff] drop-shadow-[0_0_12px_rgba(0,162,255,0.4)] mt-1 md:mt-2">
                   SORRISOS
-                </h1>
-              </div>
+                </span>
 
-              <div className="relative">
-                <h1 className="text-4xl sm:text-5xl md:text-[76px] xl:text-[84px] font-black tracking-[-0.04em] leading-[0.80] text-slate-100 font-sans uppercase flex items-center">
+                <span className="block text-slate-100 flex items-center mt-1 md:mt-2">
                   PERFEI
                   <span className="inline-block px-1 relative -top-1">
                     <Sparkle className="w-10 h-10 md:w-16 md:h-16 text-[#00f0ff] fill-current animate-pulse drop-shadow-[0_0_12px_rgba(0,240,255,0.5)]" />
                   </span>
                   TOS
-                </h1>
-              </div>
+                </span>
+              </h1>
             </div>
 
             {/* Descrição em Português */}
@@ -270,8 +254,8 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-4 max-w-4xl relative z-10">
               <div className="md:col-span-12 lg:col-span-6 bg-slate-950/45 backdrop-blur-md rounded-2xl p-5 border border-cyan-500/25 space-y-4 shadow-xl shadow-black/40">
                 
-                {/* Seletor de Protocolos Rápidos */}
-                <div className="flex bg-[#020514]/85 p-1 rounded-xl border border-cyan-500/25 gap-1 mb-2">
+                {/* Seletor de Protocolos Rápidos - Visível apenas no Mobile */}
+                <div className="flex lg:hidden bg-[#020514]/85 p-1 rounded-xl border border-cyan-500/25 gap-1 mb-2">
                   {TREATMENTS.map((t) => (
                     <button
                       key={t.id}
@@ -320,10 +304,27 @@ export default function App() {
 
           </section>
 
-          {/* --- COLUNA DIREITA: LIBERADA PARA MÁXIMA VISIBILIDADE DO VÍDEO (LG: 5 Cols) --- */}
+          {/* --- COLUNA DIREITA: SELETOR PREMIUM DE TRATAMENTOS FLUTUANTES (LG: 5 Cols) --- */}
           <section className="lg:col-span-5 flex flex-col justify-end h-full relative py-8 pl-4 lg:pl-10" id="floating-treatments-column">
             
-            <div className="xl:block hidden h-[220px]" /> {/* Espaçador para deixar o vídeo 3D brilhar */}
+            {/* Seletor Premium de Tratamentos Flutuantes (TreatmentCard) */}
+            <div className="hidden lg:flex flex-col gap-4 mb-8 items-end w-full">
+              <span className="text-[9px] font-mono tracking-widest text-cyan-400/50 uppercase font-bold block mb-1">
+                SELECIONE UM PROTOCOLO 3D:
+              </span>
+              {TREATMENTS.map((t, idx) => (
+                <TreatmentCard
+                  key={t.id}
+                  treatment={t}
+                  isActive={selectedTreatmentId === t.id}
+                  onSelect={() => {
+                    setSelectedTreatmentId(t.id);
+                    showNotice(`Protocolo carregado: ${t.title}`);
+                  }}
+                  index={idx}
+                />
+              ))}
+            </div>
 
             {/* Selo de credenciamento clínico */}
             <div className="mt-auto self-center lg:self-end max-w-[280px] text-right space-y-1 opacity-80 select-none">
@@ -407,17 +408,7 @@ export default function App() {
             loop
             muted
             playsInline
-            onTimeUpdate={(e) => {
-              const video = e.currentTarget;
-              if (isNaN(video.duration)) return;
-              const fadeStart = 0.8; // seconds before loop end to fade
-              const remaining = video.duration - video.currentTime;
-              if (remaining <= fadeStart) {
-                video.style.opacity = "0";
-              } else {
-                video.style.opacity = "0.80";
-              }
-            }}
+            poster="/photo_estetica.png"
             className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-screen transition-opacity duration-700 ease-in-out"
           />
           <div className="absolute inset-0 bg-black/4" />
@@ -435,14 +426,16 @@ export default function App() {
               </div>
               
               <div className="space-y-2 select-none">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-white font-sans uppercase">
-                  TRATAMENTOS
-                </h2>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-black tracking-[-0.03em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(0,240,255,0.15)] uppercase font-sans">
-                  COMPLETOS PARA
-                </h2>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-slate-300 font-sans uppercase">
-                  TODAS AS SUAS NECESSIDADES
+                <h2 className="font-sans uppercase">
+                  <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-white">
+                    TRATAMENTOS
+                  </span>
+                  <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-black tracking-[-0.03em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+                    COMPLETOS PARA
+                  </span>
+                  <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-slate-300">
+                    TODAS AS SUAS NECESSIDADES
+                  </span>
                 </h2>
               </div>
               

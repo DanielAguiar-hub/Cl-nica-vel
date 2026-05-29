@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ArrowUpRight, Clock, MapPin, Phone, Trash2, Calendar, ShieldCheck } from "lucide-react";
 import { Appointment } from "../types";
-import { TREATMENTS } from "../data";
-
-const WHATSAPP_LINK = "https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Viu%20Odontologia.";
+import { TREATMENTS, WHATSAPP_LINK } from "../data";
 
 interface NavigationProps {
   appointments: Appointment[];
@@ -38,6 +36,17 @@ export default function Navigation({
   onOpenBooking
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="relative w-full max-w-7xl mx-auto py-4 md:py-6 px-4 md:px-8 z-40 bg-transparent flex justify-between items-center">

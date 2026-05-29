@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Calendar, User, Clock, FileText, Check, Sparkles } from "lucide-react";
 import { Appointment } from "../types";
-import { TREATMENTS, DENTISTS } from "../data";
-
-const WHATSAPP_LINK = "https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Viu%20Odontologia.";
+import { TREATMENTS, DENTISTS, WHATSAPP_LINK } from "../data";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -24,6 +22,17 @@ export default function BookingModal({
   preselectedTreatmentId = "cosmetic",
   onBookingSuccess
 }: BookingModalProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const [patientName, setPatientName] = useState("");
   const [email, setEmail] = useState("");
   const [treatmentId, setTreatmentId] = useState(preselectedTreatmentId);

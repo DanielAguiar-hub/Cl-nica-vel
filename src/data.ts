@@ -135,3 +135,6 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Empresário"
   }
 ];
+
+export const WHATSAPP_LINK = import.meta.env.VITE_WHATSAPP_LINK || "https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Viu%20Odontologia.";
+

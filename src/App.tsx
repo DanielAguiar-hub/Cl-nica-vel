@@ -3,14 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkle, ArrowUpRight, Globe, Check, AlertCircle, Heart, Activity, UserCheck, Shield, Phone, MapPin, Instagram, Facebook, Linkedin } from "lucide-react";
-import { Appointment } from "./types";
-import { TREATMENTS, CLINIC_STATS, SERVICES_GRID, TESTIMONIALS, WHATSAPP_LINK } from "./data";
+import { TREATMENTS, CLINIC_STATS, SERVICES_GRID, TESTIMONIALS, WHATSAPP_LINK, createWhatsAppLink } from "./data";
 import Navigation from "./components/Navigation";
 import TreatmentCard from "./components/TreatmentCard";
-import BookingModal from "./components/BookingModal";
 import SmileSimulator from "./components/SmileSimulator";
 
 export { WHATSAPP_LINK };
@@ -55,7 +53,6 @@ function getServiceImage(id: string) {
 }
 
 export default function App() {
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const testimonialsRef = useRef<HTMLDivElement>(null);
 
   const scrollTestimonials = (direction: "left" | "right") => {
@@ -69,42 +66,7 @@ export default function App() {
     }
   };
   const [selectedTreatmentId, setSelectedTreatmentId] = useState<string>("cosmetic");
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [bookingFocusId, setBookingFocusId] = useState<string>("cosmetic");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  // Load appointments
-  useEffect(() => {
-    try {
-      const cached = localStorage.getItem("anodent_bookings");
-      if (cached) {
-        setAppointments(JSON.parse(cached));
-      }
-    } catch (e) {
-      console.error("Falha ao carregar cache de agendamentos", e);
-    }
-  }, []);
-
-  const updateAppointmentsStore = (updated: Appointment[]) => {
-    setAppointments(updated);
-    try {
-      localStorage.setItem("anodent_bookings", JSON.stringify(updated));
-    } catch (e) {
-      console.error("Falha ao persistir agendamentos", e);
-    }
-  };
-
-  const handleBookingSuccess = (newApp: Appointment) => {
-    const updated = [newApp, ...appointments];
-    updateAppointmentsStore(updated);
-    showNotice(`Agendamento registrado com sucesso para ${newApp.patientName}.`);
-  };
-
-  const handleCancelAppointment = (id: string) => {
-    const updated = appointments.filter((a) => a.id !== id);
-    updateAppointmentsStore(updated);
-    showNotice("Agendamento cancelado com sucesso.");
-  };
 
   const showNotice = (msg: string) => {
     setToastMessage(msg);
@@ -114,6 +76,8 @@ export default function App() {
   };
 
   const activeTreatment = TREATMENTS.find((t) => t.id === selectedTreatmentId) || TREATMENTS[0];
+  const heroWhatsAppLink = createWhatsAppLink("Olá! Vim pelo site da Viu Odontologia e gostaria de agendar uma avaliação.");
+  const activeTreatmentWhatsAppLink = createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${activeTreatment.title} na Viu Odontologia.`);
 
   return (
     <div className="min-h-screen w-full anodent-hero-layout text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden relative selection:bg-cyan-500 selection:text-black">
@@ -163,14 +127,7 @@ export default function App() {
         </AnimatePresence>
 
         {/* 1. Cabeçalho / Menu de Navegação */}
-        <Navigation
-          appointments={appointments}
-          onCancelAppointment={handleCancelAppointment}
-          onOpenBooking={() => {
-            setBookingFocusId(selectedTreatmentId);
-            setIsBookingModalOpen(true);
-          }}
-        />
+        <Navigation whatsappLink={heroWhatsAppLink} />
 
         {/* 2. Conteúdo Principal (Hero Grid) */}
         <main className="w-full max-w-7xl mx-auto px-4 md:px-8 mt-4 md:mt-8 mb-12 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-center z-10">
@@ -208,50 +165,66 @@ export default function App() {
                 <span className="flex items-end justify-between max-w-full relative">
                   <span className="text-white">CRIANDO</span>
                   <span className="hidden sm:flex items-center gap-2 text-[8px] font-mono tracking-widest text-cyan-400/60 font-bold uppercase pb-1 border-b border-cyan-500/20">
-                    <span>A ARTE DE CONSTRUIR SORRISOS</span>
+                    <span>PLANEJAMENTO DIGITAL E ATENDIMENTO HUMANO</span>
                     <span className="w-4 h-4 rounded-full border border-cyan-500/30 flex items-center justify-center text-[10px] pb-0.5 leading-none font-normal">+</span>
                   </span>
                 </span>
 
                 <span className="block text-[#00d2ff] drop-shadow-[0_0_12px_rgba(0,162,255,0.4)] mt-1 md:mt-2">
-                  SORRISOS
+                  SORRISO
                 </span>
 
                 <span className="block text-slate-100 flex items-center mt-1 md:mt-2">
-                  PERFEI
+                  NATU
                   <span className="inline-block px-1 relative -top-1">
                     <Sparkle className="w-10 h-10 md:w-16 md:h-16 text-[#00f0ff] fill-current animate-pulse drop-shadow-[0_0_12px_rgba(0,240,255,0.5)]" />
                   </span>
-                  TOS
+                  RAL
                 </span>
               </h1>
             </div>
 
             {/* Descrição em Português */}
             <p id="hero-clinic-description" className="text-xs md:text-[13px] text-slate-300 font-sans leading-relaxed max-w-lg select-text font-medium uppercase tracking-wide">
-              BEM-VINDO À VIU ODONTOLOGIA. UMA CLÍNICA BOUTIQUE DE ALTA TECNOLOGIA E ATENDIMENTO HUMANIZADO. PROJETAMOS SORRISOS EXCLUSIVOS NA INTERSECÇÃO DE BIOLOGIA, ESTÉTICA AVANÇADA E SAÚDE INTEGRAL.
+              CUIDADO ODONTOLÓGICO HUMANIZADO EM PINHEIROS, COM PLANEJAMENTO DIGITAL PARA ESTÉTICA, IMPLANTES, ALINHADORES E PREVENÇÃO. ENTENDA SEU CASO E AGENDE PELO WHATSAPP.
             </p>
 
             {/* Ações da Hero (Redirecionando para o WhatsApp e Rolagem) */}
             <div className="flex flex-wrap items-center gap-6 pt-1" id="hero-actions-container">
               <a
                 id="cta-reserve"
-                href={WHATSAPP_LINK}
+                href={heroWhatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 rounded-full px-8 py-3.5 text-[9px] font-mono font-black tracking-widest transition-all cursor-pointer flex items-center gap-3 shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:scale-[1.02] duration-300 uppercase"
               >
                 <span className="w-2 h-2 rounded-full bg-slate-950 animate-pulse" />
-                AGENDAR VIA WHATSAPP
+                AGENDAR PELO WHATSAPP
               </a>
 
               <a
                 id="cta-quick-diagnose"
-                href="#sobre-clinica"
+                href="#services"
                 className="text-white hover:text-[#00f0ff] text-[9px] font-mono font-black tracking-widest transition-all border-b border-slate-700 hover:border-[#00f0ff] pb-1 cursor-pointer flex items-center gap-1.5 uppercase"
               >
-                CONHEÇA A CLÍNICA <span className="text-xs">↓</span>
+                VER TRATAMENTOS <span className="text-xs">↓</span>
               </a>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl pt-1">
+              {[
+                "Avaliação com planejamento digital",
+                "Atendimento humanizado em Pinheiros",
+                "Estética, implantes e alinhadores"
+              ].map((benefit) => (
+                <div
+                  key={benefit}
+                  className="bg-slate-950/35 border border-cyan-500/15 rounded-xl px-3 py-2.5 text-[10px] text-slate-200 font-mono font-bold uppercase tracking-wider flex items-center gap-2"
+                >
+                  <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <span>{benefit}</span>
+                </div>
+              ))}
             </div>
 
             {/* Painel do Tratamento Ativo (Lado Esquerdo) */}
@@ -279,7 +252,7 @@ export default function App() {
                 </div>
 
                 <span className="text-[8px] font-mono tracking-widest text-[#00f0ff]/80 uppercase font-black block">
-                  PROCESSO DE ANÁLISE
+                  TRATAMENTO EM DESTAQUE
                 </span>
                 <h5 className="text-[13px] font-bold font-sans tracking-tight text-white uppercase">
                   {activeTreatment.title}
@@ -316,10 +289,10 @@ export default function App() {
             {/* Selo de credenciamento clínico */}
             <div className="mt-auto self-center lg:self-end max-w-[280px] text-right space-y-1 opacity-80 select-none">
               <span className="text-[8px] font-mono tracking-widest text-[#00f0ff]/60 font-bold uppercase block">
-                COMPLIANCE CLÍNICO & SAÚDE
+                SEGURANÇA E ACOLHIMENTO
               </span>
               <p className="text-[10px] text-slate-400 font-sans leading-tight">
-                Instalações regulamentadas sob os padrões de vigilância sanitária nacional. Segurança biológica integral.
+                Atendimento planejado para conforto, biossegurança e acompanhamento próximo em cada etapa.
               </p>
             </div>
           </section>
@@ -352,7 +325,7 @@ export default function App() {
 
             <div className="pt-2">
               <a
-                href={WHATSAPP_LINK}
+                href={activeTreatmentWhatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex bg-white hover:bg-slate-100 hover:brightness-105 text-slate-950 rounded-full px-10 py-4.5 text-[10px] font-mono font-black tracking-widest transition-all gap-3 items-center shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:scale-[1.03] duration-300 uppercase"
@@ -389,7 +362,7 @@ export default function App() {
       </section>
 
       {/* 2.5 SEÇÃO: LISTA COMPLETA DE SERVIÇOS (Imagens reais odontológicas inseridas nos cards) */}
-      <section id="services" className="w-full py-16 md:py-24 relative overflow-hidden z-10 scroll-mt-12 bg-gradient-to-b from-[#030614] via-[#02040c]/70 to-[#02040c]">
+      <section id="services" className="w-full pt-16 md:pt-24 pb-28 md:pb-36 relative overflow-hidden z-10 scroll-mt-12 bg-gradient-to-b from-[#030614] via-[#02040c]/70 to-[#02040c]">
         
         {/* Layer do Vídeo de Fundo da Seção de Serviços */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
@@ -421,19 +394,19 @@ export default function App() {
               <div className="space-y-2 select-none">
                 <h2 className="font-sans uppercase">
                   <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-white">
-                    TRATAMENTOS
+                    ESCOLHA PELO
                   </span>
                   <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-black tracking-[-0.03em] leading-[0.95] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(0,240,255,0.15)]">
-                    COMPLETOS PARA
+                    QUE VOCÊ
                   </span>
                   <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black tracking-[-0.03em] leading-[0.95] text-slate-300">
-                    TODAS AS SUAS NECESSIDADES
+                    PRECISA AGORA
                   </span>
                 </h2>
               </div>
               
               <p className="text-[11px] md:text-xs text-slate-400 font-mono leading-relaxed max-w-lg select-text uppercase font-bold tracking-wider pt-2">
-                DO CUIDADO PREVENTIVO À REABILITAÇÃO ESTÉTICA COMPLETA, ESTAMOS PRONTOS PARA CUIDAR DE VOCÊ.
+                ENCONTRE RAPIDAMENTE O CAMINHO CERTO: DOR, ESTÉTICA, IMPLANTES, ALINHAMENTO, CRIANÇAS OU PREVENÇÃO.
               </p>
             </div>
 
@@ -445,7 +418,7 @@ export default function App() {
               </div>
 
               <a
-                href={WHATSAPP_LINK}
+                href={heroWhatsAppLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-slate-900/60 hover:bg-cyan-400 hover:text-slate-950 border border-cyan-500/20 text-white rounded-xl px-6 py-3.5 text-[9px] font-mono font-black tracking-widest transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 w-full sm:w-auto uppercase shadow-md shadow-slate-950/40"
@@ -460,12 +433,9 @@ export default function App() {
           {/* Grid de 6 cards de especialidades com imagens reais */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES_GRID.map((service) => (
-              <div
+              <article
                 key={service.id}
-                onClick={() => {
-                  showNotice(`Área de especialidade selecionada: ${service.title}`);
-                }}
-                className="bg-[#030718]/40 hover:bg-[#05102a]/70 backdrop-blur-xl border border-cyan-500/10 hover:border-cyan-400/30 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:shadow-[0_0_20px_rgba(0,240,255,0.05)]"
+                className="bg-[#030718]/40 hover:bg-[#05102a]/70 backdrop-blur-xl border border-cyan-500/10 hover:border-cyan-400/30 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between group hover:shadow-[0_0_20px_rgba(0,240,255,0.05)]"
               >
                 <div>
                   {/* Bloco de Imagem com zoom e gradiente de escurecimento */}
@@ -504,19 +474,29 @@ export default function App() {
                 </div>
 
                 <div className="flex gap-1.5 mt-6 pt-3 border-t border-cyan-500/5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-950/60 group-hover:bg-cyan-500/20 transition-all" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-950/60 group-hover:bg-cyan-500/20 transition-all" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/20 group-hover:bg-cyan-400 transition-all" />
+                  <a
+                    href={createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${service.title} na Viu Odontologia.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-mono font-black tracking-widest text-cyan-400 hover:text-white uppercase transition-colors"
+                  >
+                    Agendar avaliação →
+                  </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
         </div>
+
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-40 md:h-56 pointer-events-none z-20 bg-gradient-to-b from-transparent via-[#02040c]/80 to-[#02040c]"
+        />
       </section>
 
       {/* 2.8 SEÇÃO: DEPOIMENTOS (SORRISOS DE SATISFAÇÃO) */}
-      <section id="depoimentos" className="w-full py-16 md:py-24 relative overflow-hidden z-20 bg-[#02040c] scroll-mt-12">
+      <section id="depoimentos" className="w-full pt-10 pb-16 md:pt-14 md:pb-24 relative overflow-hidden z-20 bg-[#02040c] scroll-mt-12">
         <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-10 relative">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -639,7 +619,7 @@ export default function App() {
               </li>
               <li className="flex gap-2 items-center">
                 <Phone className="w-4 h-4 text-[#25d366] shrink-0" />
-                <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-semibold">
+                <a href={heroWhatsAppLink} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-semibold">
                   +55 (11) 99999-9999 (WhatsApp)
                 </a>
               </li>
@@ -678,13 +658,15 @@ export default function App() {
         </div>
       </footer>
 
-      {/* 4. Modal para agendamento manual fictício */}
-      <BookingModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        preselectedTreatmentId={bookingFocusId}
-        onBookingSuccess={handleBookingSuccess}
-      />
+      <a
+        href={heroWhatsAppLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed inset-x-4 bottom-4 z-50 md:hidden bg-[#25d366] text-white rounded-full px-5 py-3 text-[11px] font-mono font-black tracking-widest uppercase shadow-2xl shadow-black/50 flex items-center justify-center gap-2"
+      >
+        <Phone className="w-4 h-4" />
+        Agendar pelo WhatsApp
+      </a>
 
     </div>
   );

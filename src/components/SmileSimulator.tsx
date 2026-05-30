@@ -7,11 +7,19 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ShieldCheck, Brain } from "lucide-react";
 import { SimulationResult } from "../types";
+import { createWhatsAppLink } from "../data";
 
 export default function SmileSimulator() {
   const [goal, setGoal] = useState("whiten");
   const [results, setResults] = useState<SimulationResult | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const goalLabels: Record<string, string> = {
+    whiten: "melhorar a estética do meu sorriso",
+    alignment: "alinhar meus dentes",
+    missing: "repor um dente com implante ou coroa",
+    detox: "cuidar da gengiva e fazer uma avaliação preventiva"
+  };
 
   const handleSimulate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,16 +77,16 @@ export default function SmileSimulator() {
       </div>
 
       <h5 className="text-sm font-bold font-sans tracking-tight text-white mb-1">
-        Simule Seu Tratamento
+        Encontre o melhor caminho
       </h5>
       <p className="text-[11px] text-slate-400 font-sans leading-relaxed mb-4">
-        Selecione o seu principal objetivo estético ou de saúde bucal para receber uma estimativa clínica recomendada.
+        Escolha o que mais incomoda hoje e receba uma orientação inicial antes de falar com a equipe.
       </p>
 
       <form id="simulator-form" onSubmit={handleSimulate} className="space-y-3">
         <div>
           <label className="block text-[8px] font-mono text-cyan-400/70 tracking-wider mb-1">
-            OBJETIVO PRINCIPAL
+            O QUE VOCÊ PROCURA?
           </label>
           <div className="grid grid-cols-2 gap-2 text-[10px] font-sans font-medium">
             <label
@@ -88,7 +96,7 @@ export default function SmileSimulator() {
                   : "bg-slate-950/40 text-slate-300 hover:bg-slate-900 border-slate-800"
               }`}
             >
-              <span>Lentes & Clareamento</span>
+              <span>Melhorar meu sorriso</span>
               <input
                 type="radio"
                 name="sim-goal"
@@ -106,7 +114,7 @@ export default function SmileSimulator() {
                   : "bg-slate-950/40 text-slate-300 hover:bg-slate-900 border-slate-800"
               }`}
             >
-              <span>Alinhar Dentes</span>
+              <span>Alinhar meus dentes</span>
               <input
                 type="radio"
                 name="sim-goal"
@@ -124,7 +132,7 @@ export default function SmileSimulator() {
                   : "bg-slate-950/40 text-slate-300 hover:bg-slate-900 border-slate-800"
               }`}
             >
-              <span>Implante & Coroa</span>
+              <span>Repor um dente</span>
               <input
                 type="radio"
                 name="sim-goal"
@@ -142,7 +150,7 @@ export default function SmileSimulator() {
                   : "bg-slate-950/40 text-slate-300 hover:bg-slate-900 border-slate-800"
               }`}
             >
-              <span>Saúde Gengival</span>
+              <span>Cuidar da gengiva</span>
               <input
                 type="radio"
                 name="sim-goal"
@@ -170,7 +178,7 @@ export default function SmileSimulator() {
           ) : (
             <>
               <Brain className="w-3.5 h-3.5" />
-              SIMULAR MEU TRATAMENTO
+              VER ORIENTAÇÃO INICIAL
             </>
           )}
         </button>
@@ -218,8 +226,17 @@ export default function SmileSimulator() {
 
             <div className="pt-2 flex items-center gap-2 text-[10px] text-cyan-400 bg-cyan-950/20 p-2 border border-cyan-500/20 rounded-lg">
               <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>Garantia de biossegurança com materiais biocompatíveis e livres de metal.</span>
+              <span>Esta é uma orientação inicial. A indicação final depende de avaliação presencial.</span>
             </div>
+
+            <a
+              href={createWhatsAppLink(`Olá! Usei o simulador do site e gostaria de agendar uma avaliação para ${goalLabels[goal]}.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-white hover:bg-slate-100 text-slate-950 py-2.5 rounded-lg text-[10px] font-mono tracking-widest font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              FALAR COM UM ESPECIALISTA
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

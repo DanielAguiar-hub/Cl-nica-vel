@@ -14,18 +14,6 @@ export interface Treatment {
   priceEstimate: string;
 }
 
-export interface Appointment {
-  id: string;
-  patientName: string;
-  email: string;
-  treatmentId: string;
-  dentistName: string;
-  date: string;
-  timeSlot: string;
-  notes?: string;
-  createdAt: string;
-}
-
 export interface ClinicStat {
   id: string;
   value: string;

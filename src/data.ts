@@ -136,5 +136,12 @@ export const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
-export const WHATSAPP_LINK = import.meta.env.VITE_WHATSAPP_LINK || "https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Viu%20Odontologia.";
+const DEFAULT_WHATSAPP_MESSAGE = "Olá! Gostaria de agendar uma consulta na Viu Odontologia.";
 
+export const WHATSAPP_PHONE = import.meta.env.VITE_WHATSAPP_PHONE || "5511999999999";
+
+export function createWhatsAppLink(message = DEFAULT_WHATSAPP_MESSAGE) {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+export const WHATSAPP_LINK = import.meta.env.VITE_WHATSAPP_LINK || createWhatsAppLink();

@@ -20,7 +20,7 @@ export function ClinicLogo() {
         <circle cx="12" cy="11" r="1.5" fill="currentColor" />
       </svg>
       <span className="font-sans font-black tracking-wider text-sm text-white uppercase">
-        VIU<span className="text-cyan-400 font-light">odontologia</span>
+        VERO<span className="text-cyan-400 font-light">odontologia</span>
       </span>
     </div>
   );
@@ -97,7 +97,7 @@ export default function Navigation({ whatsappLink }: NavigationProps) {
               <div className="space-y-6 pt-10">
                 <div className="border-b border-cyan-500/10 pb-5">
                   <span className="text-[9px] font-mono tracking-widest text-[#00f0ff] font-semibold block uppercase">
-                    VIU ODONTOLOGIA
+                    VERO ODONTOLOGIA
                   </span>
                   <h4 className="text-xl font-bold font-sans tracking-tight text-white mt-1">
                     Como podemos ajudar?

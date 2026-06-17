@@ -22,7 +22,7 @@ export function ClinicLogo() {
         <circle cx="12" cy="11" r="1.5" fill="currentColor" />
       </svg>
       <span className="font-sans font-black tracking-wider text-sm text-white uppercase">
-        VIU<span className="text-cyan-400 font-light">odontologia</span>
+        VERO<span className="text-cyan-400 font-light">odontologia</span>
       </span>
     </div>
   );
@@ -76,8 +76,8 @@ export default function App() {
   };
 
   const activeTreatment = TREATMENTS.find((t) => t.id === selectedTreatmentId) || TREATMENTS[0];
-  const heroWhatsAppLink = createWhatsAppLink("Olá! Vim pelo site da Viu Odontologia e gostaria de agendar uma avaliação.");
-  const activeTreatmentWhatsAppLink = createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${activeTreatment.title} na Viu Odontologia.`);
+  const heroWhatsAppLink = createWhatsAppLink("Olá! Vim pelo site da Vero Odontologia e gostaria de agendar uma avaliação.");
+  const activeTreatmentWhatsAppLink = createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${activeTreatment.title} na Vero Odontologia.`);
 
   return (
     <div className="min-h-screen w-full anodent-hero-layout text-slate-100 font-sans flex flex-col justify-between overflow-x-hidden relative selection:bg-cyan-500 selection:text-black">
@@ -146,7 +146,7 @@ export default function App() {
               </div>
               
               <div className="space-y-0.5 text-left text-slate-400 font-mono text-[9px] leading-tight pt-1">
-                <span className="text-white font-black block tracking-widest text-[10px]">VIU ODONTOLOGIA</span>
+                <span className="text-white font-black block tracking-widest text-[10px]">VERO ODONTOLOGIA</span>
                 <span className="block">ESTÉTICA DENTAL AVANÇADA</span>
                 <span className="block">E REABILITAÇÃO ORAL DIGITAL</span>
               </div>
@@ -316,7 +316,7 @@ export default function App() {
             </h2>
 
             <p className="text-lg sm:text-[19px] text-slate-200 font-sans leading-relaxed">
-              Na <strong>VIU Odontologia</strong>, unimos o acolhimento de especialistas à precisão da tecnologia digital bucal. Nossa filosofia foca no tratamento individualizado do paciente, combinando as técnicas estéticas mais avançadas e a saúde biológica orofacial.
+              Na <strong>VERO Odontologia</strong>, unimos o acolhimento de especialistas à precisão da tecnologia digital bucal. Nossa filosofia foca no tratamento individualizado do paciente, combinando as técnicas estéticas mais avançadas e a saúde biológica orofacial.
             </p>
 
             <p className="text-lg sm:text-[19px] text-slate-300 font-sans leading-relaxed">
@@ -342,7 +342,7 @@ export default function App() {
             <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-cyan-500/20 relative shadow-2xl">
               <img 
                 src="/photo_clinica_geral.png" 
-                alt="Consultório Moderno Viu Odontologia" 
+                alt="Consultório Moderno Vero Odontologia" 
                 width="1200"
                 height="750"
                 loading="lazy"
@@ -475,7 +475,7 @@ export default function App() {
 
                 <div className="flex gap-1.5 mt-6 pt-3 border-t border-cyan-500/5">
                   <a
-                    href={createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${service.title} na Viu Odontologia.`)}
+                    href={createWhatsAppLink(`Olá! Gostaria de agendar uma avaliação para ${service.title} na Vero Odontologia.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[10px] font-mono font-black tracking-widest text-cyan-400 hover:text-white uppercase transition-colors"
@@ -511,7 +511,7 @@ export default function App() {
               </h2>
               
               <p className="text-xs sm:text-[13px] text-slate-300 font-sans leading-relaxed max-w-2xl">
-                Na Viu Odontologia, estamos sempre atentos ao bem-estar de nossos pacientes. Confira depoimentos de quem já passou por aqui:
+                Na Vero Odontologia, estamos sempre atentos ao bem-estar de nossos pacientes. Confira depoimentos de quem já passou por aqui:
               </p>
             </div>
 
@@ -579,7 +579,7 @@ export default function App() {
           <div className="md:col-span-5 space-y-4">
             <ClinicLogo />
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              VIU Odontologia - Tecnologia 3D e atendimento humanizado para criar o seu melhor sorriso. Nosso compromisso é com sua saúde e autoestima.
+              VERO Odontologia - Tecnologia 3D e atendimento humanizado para criar o seu melhor sorriso. Nosso compromisso é com sua saúde e autoestima.
             </p>
             <div className="flex gap-3 pt-2">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-cyan-500/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-all">
@@ -633,7 +633,7 @@ export default function App() {
           <div className="flex items-center gap-2 select-none">
             <Globe className="w-4 h-4 text-cyan-400/40 animate-spin-slow" />
             <span className="text-[9px] font-mono text-slate-400/60 uppercase tracking-widest">
-              VIU ODONTOLOGIA © 2026. TODOS OS DIREITOS RESERVADOS.
+              VERO ODONTOLOGIA © 2026. TODOS OS DIREITOS RESERVADOS.
             </span>
           </div>
 

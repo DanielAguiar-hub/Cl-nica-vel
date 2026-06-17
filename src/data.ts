@@ -118,7 +118,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: "02",
-    text: "Gostaria de expressar minha profunda gratidão à clínica Viu Odontologia. Desde a minha primeira consulta com a Dra. Ana Célia, fui acolhida com um atendimento excepcional que me trouxe confiança e tranquilidade, algo que eu não sentia há muito tempo devido a um trauma com dentistas.",
+    text: "Gostaria de expressar minha profunda gratidão à clínica Vero Odontologia. Desde a minha primeira consulta com a Dra. Ana Célia, fui acolhida com um atendimento excepcional que me trouxe confiança e tranquilidade, algo que eu não sentia há muito tempo devido a um trauma com dentistas.",
     name: "Elaine Leite Augusto",
     role: "Paciente de Reabilitação"
   },
@@ -136,7 +136,7 @@ export const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
-const DEFAULT_WHATSAPP_MESSAGE = "Olá! Gostaria de agendar uma consulta na Viu Odontologia.";
+const DEFAULT_WHATSAPP_MESSAGE = "Olá! Gostaria de agendar uma consulta na Vero Odontologia.";
 
 export const WHATSAPP_PHONE = import.meta.env.VITE_WHATSAPP_PHONE || "5511999999999";
 
